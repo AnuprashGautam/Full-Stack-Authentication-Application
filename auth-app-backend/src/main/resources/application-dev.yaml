@@ -1,0 +1,3 @@
+#Configuration for development environment
+server:
+  port: 8081

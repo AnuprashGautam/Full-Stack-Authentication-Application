@@ -1,0 +1,3 @@
+#Configuration for testing environment
+server:
+  port: 8082

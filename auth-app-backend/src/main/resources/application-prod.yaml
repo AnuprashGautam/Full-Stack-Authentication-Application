@@ -1,0 +1,3 @@
+#Configuration for production environment
+server:
+  port: 8083
