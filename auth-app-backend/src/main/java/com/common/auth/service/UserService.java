@@ -2,7 +2,6 @@ package com.common.auth.service;
 
 import com.common.auth.dto.UserDto;
 
-import java.util.Iterator;
 import java.util.UUID;
 
 public interface UserService {
@@ -16,8 +15,11 @@ public interface UserService {
     UserDto updateUser(UserDto userDto, String userId);
 
     // Get user by id
-    UserDto getUserById(UUID id);
+    UserDto getUserById(String userId);
 
     // Get all users
     Iterable<UserDto> getAllUsers();
+
+    // Delete user
+    void deleteUser(String userId);
 }
