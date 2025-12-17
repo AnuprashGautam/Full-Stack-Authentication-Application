@@ -32,7 +32,7 @@ public class JwtService {
     ){
         if(secretKey == null || secretKey.length() < 64 )
         {
-            throw new IllegalArgumentException("Invalid Secret");
+            throw new IllegalArgumentException("Invalid Secret: "+secretKey);
         }
         this.secretKey= Keys.hmacShaKeyFor(secretKey.getBytes(StandardCharsets.UTF_8));
         this.accessTtlSeconds=accessTtlSeconds;
@@ -82,12 +82,7 @@ public class JwtService {
     // Parse the token
     public Jws<Claims> parseToken(String token)
     {
-        try{
-            return Jwts.parser().verifyWith(secretKey).build().parseSignedClaims(token);
-        }catch (JwtException e)
-        {
-            throw e;
-        }
+        return Jwts.parser().verifyWith(secretKey).build().parseSignedClaims(token);
     }
 
     // Checking if the token is access token or not.
@@ -118,6 +113,22 @@ public class JwtService {
     public String getJti(String token)
     {
         return parseToken(token).getPayload().getId();
+    }
+
+    // Fetching the roles
+    public List<String> getRoles(String token)
+    {
+        Claims payload = parseToken(token).getPayload();
+
+        return (List<String>) payload.get("roles");
+    }
+
+    // Fetching the email
+    public String getEmail(String token)
+    {
+        Claims payload = parseToken(token).getPayload();
+
+        return (String) payload.get("email");
     }
 
 }

@@ -1,6 +1,6 @@
 # Configuration for development environment
 server:
-  port: ${SERVER_PORT}
+  port: ${SERVER_PORT:8081}
 
 # Database configurations
 spring:
@@ -38,7 +38,7 @@ logging:
 # JWT configuration (CUSTOM)
 security:
     jwt:
-      secret: ${JWT_SECRET:f8t5lsG3UMIMlDHIo9Pa2JRaGVkCuKfw09EebgUzq3o=}
+      secret: ${JWT_SECRET}
       issuer: ${JWT_ISSUER:com.common.auth}
       access-ttl-seconds: ${JWT_ACCESS_TTL_SECONDS:3600}
       refresh-ttl-seconds: ${JWT_REFRESH_TTL_SECONDS:86400}
